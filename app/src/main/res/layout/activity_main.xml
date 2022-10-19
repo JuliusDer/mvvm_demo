@@ -1,29 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="8dp"
-    android:gravity="center"
-    android:orientation="vertical"
     tools:context=".view.MainActivity">
 
-    <EditText
-        android:id="@+id/messageInput"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.mvvmdemo.vielmodel.DemoViewModel" />
 
-    <Button
-        android:id="@+id/messageButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/save" />
+        <variable
+            name="mainActivity"
+            type="com.example.mvvmdemo.view.MainActivity" />
+    </data>
 
-    <TextView
-        android:id="@+id/messageView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/messageInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/messageButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->mainActivity.onMessageButtonClick()}"
+            android:text="@string/save" />
+
+        <TextView
+            android:id="@+id/messageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.message}" />
+
+    </LinearLayout>
+</layout>

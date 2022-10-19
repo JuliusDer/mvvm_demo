@@ -16,16 +16,12 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.messageButton.setOnClickListener { onMessageButtonClick() }
-
-        viewModel.message.observe(this, ::onMessageUpdated)
+        binding.lifecycleOwner = this
+        binding.mainActivity = this
+        binding.viewModel = viewModel
     }
 
-    private fun onMessageButtonClick() {
+    fun onMessageButtonClick() {
         viewModel.submitMessage(binding.messageInput.text.toString())
-    }
-
-    private fun onMessageUpdated(newMessage: String) {
-        binding.messageView.text = newMessage
     }
 }
